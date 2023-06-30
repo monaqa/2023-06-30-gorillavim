@@ -113,16 +113,6 @@ body
   image("fig/logo-190727.jpg", height: 150pt)
 )
 
-// #grid(
-//   columns: (40%, 40%),
-//   column-gutter: 10pt,
-//   row-gutter: 10pt,
-//   link("https://github.com/monaqa/dial.nvim", image("fig/dial.nvim.svg")),
-//   image("fig/dial.nvim.svg"),
-//   image("fig/dial.nvim.svg"),
-//   image("fig/dial.nvim.svg"),
-// )
-
 #let egblock(body) = align(
   center,
   block(
@@ -611,34 +601,6 @@ require("dial.config").augends:register_group{
     ]
   ]
 
-// = 使用例
-//
-// #grid(
-//   columns: 3,
-//   column-gutter: 10pt,
-//   row-gutter: 20pt,
-// )[
-// #align(center, [これを])
-//
-// ```
-//
-// ```
-//
-// ][
-// #align(center + horizon,
-// harrow(length: 20pt)
-// )
-// ][
-//
-// #align(center, [こんな感じにしたい])
-//
-// ```
-//
-// ```
-//
-// ]
-
-
 = まとめ（宣伝）
 
 - 標準の `<C-a>` / `<C-x>` だけでも今日は覚えて帰ってください
@@ -657,25 +619,6 @@ require("dial.config").augends:register_group{
 
 
 #section[おまけ: dial.nvim の仕組み][
-
-// = dial.nvim 全体の仕組み
-//
-// - `<C-a>` / `<C-x>` を押したとき、 dial.nvim が行うことは3つある
-//   1. カーソル行から増減対象となるテキストの候補を#strong[見つける]
-//   2. 見つけた候補のうち、最適なものを#strong[選択する]
-//   3. 見つけたテキストを実際に#strong[増減し]、
-//     そこにカーソルを#strong[移動させる]
-//
-// - そこで、オペレータ + テキストオブジェクトとして実装することにした
-//   - イメージとしてはこんな感じ（擬似コード）
-//
-//     ```vim
-//     nnoremap <C-a> <Plug>(select-augend)   " 上の 1 と 2 に相当
-//                    \ <Plug>(operate)       " 3 に相当
-//                    \ <Plug>(text-object)   " 1 に相当
-//     ```
-//
-//   - sandwich.vim で採用されている実装方法を参考にした
 
 #for layer in (1, 2, 3, 4, 5) [
 
@@ -808,14 +751,6 @@ $
 #statement[
   operator + text object と見なせば、自然にドットリピート対応できる
   ]
-
-// = 最適な増減ルールの選び方
-
-// #egblock[
-//   #egcode[date: #csr[2]023/06/30]
-//   #harrow(upper_text: [`<C-a>`])
-//   #egcode[date: #cemph[202#csr[4]]/06/30]
-// ]
 
 = 最適な被加数をどのように選ぶか？
 #egblock[
